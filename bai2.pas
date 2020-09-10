@@ -1,5 +1,5 @@
 uses crt;
-var i:byte;
+var i,j:integer;
     f:text;
     function nhiphan(n:integer):boolean;
     var i,j,code:integer;
@@ -13,7 +13,10 @@ var i:byte;
               n:=n div 2;
          end;
          for i:=1 to (length(s) div 2) do
-             if s[i]<>s[length(s)-i+1] then exit;
+         begin
+              code:=length(s)-i+1;
+              if s[i]<>s[length(s)-i+1] then exit;
+         end;
          nhiphan:=true;
     end;
     function nto(n:longint):boolean;
@@ -26,8 +29,11 @@ var i:byte;
     end;
 begin
      clrscr;
-     nhiphan(727);
-     for i:=10 to 99 do
-         if (nto(i*10+(i div 10))=true) and (nhiphan(i*10+(i div 10))=true) then write(i*10+(i div 10),' ');
+     for i:=31 to 31 do
+     begin
+          j:=10*i+(i div 10);
+          if nto(j)=true then
+             if nhiphan(j)=true then writeln(j);
+     end;
      readln;
 end.
